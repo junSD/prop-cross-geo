@@ -5,7 +5,7 @@ export function runBlock ($log, $rootScope) {
   $rootScope.listings = [];
 
   const listingsHere = $rootScope.$on('listings_here', function(event, data) {
-    $log.debug(event);
+    $log.debug("Event is ON", event);
     $rootScope.listings = data.listings;
   });
 }

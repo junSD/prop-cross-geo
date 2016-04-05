@@ -9,8 +9,8 @@
       <div layout="row">
         <div flex="33">
           <md-input-container>
-            <label>Last Name</label>
-            <input name="lastName" ng-model="main.searchQuery">
+            <label>Search House</label>
+            <input name="Search" ng-model="main.searchQuery">
           </md-input-container>
           <md-button ng-click="main.search( main.searchQuery )" class="md-raised">Go</md-button>
 
@@ -35,7 +35,25 @@
 
     </div>
 
+ <form action="#">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample3" ng-model="main.latitude">
+        <label class="mdl-textfield__label" for="sample4">Input latitude</label>
+        <span class="mdl-textfield__error">Input is not a number!</span>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample4" ng-model="main.longitude">
+        <label class="mdl-textfield__label" for="sample4">Input longitude</label>
+        <span class="mdl-textfield__error">Input is not a number!</span>
+      </div>
+</form>
+
+
+<md-button ng-click="main.searchLocationLucky(main.latitude, main.longitude)" class="md-raised">
+I'm lucky - Search</md-button>
+
   </md-content>
+
 
 </div>
 

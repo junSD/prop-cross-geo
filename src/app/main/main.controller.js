@@ -6,7 +6,9 @@ export class MainController {
     this.classAnimation = '';
     this.creationDate = 1458749947546;
     this.toastr = toastr;
+    
     this._geo = GeolocationService;
+    this._nestoriaApi = NestoriaAPI;
     this._$log = $log;
 
     this.locations = [];
@@ -43,14 +45,70 @@ export class MainController {
             }
         });
     };
-  }
+  };
+
+  this.searchLocationLucky = function(latitude, longitude) {
+        let text = latitude + ',' + longitude;
+          $log.debug('searchLocationLucky ' + text);
+      NestoriaAPI.getByLocation(text)
+        .then( response => {
+          $log.debug(response);
+         
+          if(response.type === 'listings') {
+
+            $scope.$emit('listings_here', {
+              listings: response.data
+            });
+
+            $state.go('houses');
+          } else {
+          
+            this.locations = response.data;
+          }
+        }).catch((res) => {
+            switch(res.response.application_response_code) {
+              case '201':
+                this.errorMessage = 'Location not matched';
+                    break;
+              default:
+                this.errorMessage = 'Unable to detect current location. Please ensure location is turned on in your phone settings and try again';
+            }
+        });  
+};
+
   searchLocation() {
     this._geo.getCoords()
       .then(res => {
           this._$log.debug(res);
-          // NestoriaAPI.getByLocation
+          let coords = res.latitude + ',' + res.longitude;
+          this._$log.debug(coords);
+            this._nestoriaApi.getByLocation(coords)
+             .then( response => {
+            $log.debug(response);
+          
+            if(response.type === 'listings') {
+
+             $scope.$emit('listings_here', {
+               listings: response.data
+              });
+
+              $state.go('houses');
+            } else {
+          
+             this.locations = response.data;
+           }
+        }).catch((res) => {
+            switch(res.response.application_response_code) {
+              case '201':
+                this.errorMessage = 'Location not matched';
+                    break;
+              default:
+                this.errorMessage = 'Unable to detect current location. Please ensure location is turned on in your phone settings and try again';
+            }
+        });
         });
   }
+
   clear() {
     this.errorMessage = '';
     this.locations = [];
