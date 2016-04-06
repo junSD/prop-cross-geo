@@ -13,9 +13,9 @@ import GoComponent from '../app/components/go/go.component';
 import {HousesController} from '../app/houses/houses.controller';
 import {HouseDirective} from '../app/components/house/house.directive';
 
-import {FavoritesController} from '../app/components/favorites/favorites.controller';
-import {FavoriteDirective} from '../app/components/favorite/favorite.directive';
-import {FavoritesService} from '../app/components/FavoritesService/favorites.service';
+// import {FavoritesController} from '../app/components/favorites/favorites.controller';
+// import {FavoriteDirective} from '../app/components/favorite/favorite.directive';
+// import {FavoritesService} from '../app/components/FavoritesService/favorites.service';
 
 
 import { NestoriaAPI } from '../app/components/nestoriaAPI/nestoria.service';
@@ -33,14 +33,14 @@ angular.module('propertycross', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitiz
     .controller('MainController', MainController)
     .controller('PropertyController', PropertyController)
     .controller('HousesController', HousesController)
-    .controller('FavoritesController', FavoritesController)
+    // .controller('FavoritesController', FavoritesController)
 
     .directive('acmeNavbar', NavbarDirective)
     .directive('acmeMalarkey', MalarkeyDirective)
     .directive('acmeHouse', HouseDirective)
-    .directive('acmeFavorite', FavoriteDirective)
+    // .directive('acmeFavorite', FavoriteDirective)
 
     .component('acmeGo', GoComponent)
     .service('GeolocationService', GeolocationService)
-    .service('FavoritesService', FavoritesService)
+    // .service('FavoritesService', FavoritesService)
 ;

@@ -45,9 +45,7 @@ export class MainController {
             }
         });
     };
-  };
-
-  this.searchLocationLucky = function(latitude, longitude) {
+      this.searchLocationLucky = function(latitude, longitude) {
         let text = latitude + ',' + longitude;
           $log.debug('searchLocationLucky ' + text);
       NestoriaAPI.getByLocation(text)
@@ -75,6 +73,9 @@ export class MainController {
             }
         });  
 };
+
+  }
+
 
   searchLocation() {
     this._geo.getCoords()
